@@ -1,7 +1,19 @@
 package ru.job4j.calculator;
 
+/**
+ * Calculator for Math operation
+ *
+
+ */
 public class Calculator {
 
+    /**
+     * Method plus
+     * @param first first argument
+     * @param second second argument
+     * @return result math operation
+     *
+     */
     public static void plus(int first, int second) {
         int result = first + second;
         System.out.println(result);
@@ -15,4 +27,3 @@ public class Calculator {
         Calculator.plus(3, 5);
     }
 }
-//1. В комментарии к задаче напишите код, который вызывает метод plus с аргументами 100 и 500, 4 и 2, 3 и 5.

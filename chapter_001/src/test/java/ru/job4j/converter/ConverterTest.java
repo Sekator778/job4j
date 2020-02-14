@@ -12,13 +12,11 @@ public class ConverterTest {
         int out = Converter.rubleToEuro(in);
         Assert.assertEquals(expected, out);
     }
-//    @Test
-//    public void rubleToEuro1() {
-//        int in1 = 210;
-//        int expected = 2;
-//        int out = Converter.rubleToEuro(in1);
-//        Assert.assertEquals(expected, out);
-//    }
+
+    @Test
+    public void rubleToEuro1() {
+        Assert.assertEquals(10, Converter.rubleToEuro(700));
+    }
 
     @Test
     public void rubleToDollar() {
@@ -28,11 +26,8 @@ public class ConverterTest {
         Assert.assertEquals(expected, out);
     }
 
-//    @Test
-//    public void rubleToDollar1() {
-//        int in = 180;
-//        int expected = 2;
-//        int out = Converter.rubleToDollar(in);
-//        Assert.assertEquals(expected, out);
-//    }
+    @Test
+    public void rubleToDollar1() {
+        Assert.assertEquals(3, Converter.rubleToDollar(180));
+    }
 }

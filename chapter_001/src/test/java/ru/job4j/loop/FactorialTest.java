@@ -18,4 +18,8 @@ public class FactorialTest {
     public void whenCalculateFactorialForZeroThenOne() {
         assertThat(Factorial.calc(0), is(1));
     }
+    @Test
+    public void whenCalculateFactorialForTenThen() {
+        assertThat(Factorial.calc(10), is(3628800));
+    }
 }

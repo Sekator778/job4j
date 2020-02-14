@@ -17,4 +17,8 @@ public class MultiMaxTest {
     public void whenSecondMax1() {
         assertThat(new MultiMax().max(0, -2, -10), is(0));
     }
+    @Test
+    public void whenSecondMax2() {
+        assertThat(new MultiMax().max(100, -2000, 10), is(100));
+    }
 }

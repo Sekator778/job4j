@@ -7,7 +7,9 @@ public class Board {
                 //печатаем X - width раз.
                 if ((row + cell) % 2 == 0) {
                     System.out.print("X");
-                } else System.out.print(" ");
+                } else {
+                    System.out.print(" ");
+                }
             }
             System.out.println();
         }

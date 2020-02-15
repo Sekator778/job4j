@@ -7,6 +7,6 @@ public class Check {
             if (x != etalon) {
                return false;
             }
-        }return true;
+        } return true;
     }
 }

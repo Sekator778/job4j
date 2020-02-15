@@ -22,4 +22,5 @@ public class FactorialTest {
     public void whenCalculateFactorialForTenThen() {
         assertThat(Factorial.calc(10), is(3628800));
     }
+
 }

@@ -11,8 +11,7 @@ public class MathFunc {
         int y = 1 / x;
         return y;
     }
-//1. В комментарии к задаче напишите код. В коде необходимо
-// вызвать метод func1 с аргументом x = 100, а результат вычисления функции записать в переменную result.
+
     public static void main(String[] args) {
         int result1 = MathFunc.func1(3);
         int result2 = MathFunc.func1(5);

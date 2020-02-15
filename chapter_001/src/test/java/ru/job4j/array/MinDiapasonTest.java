@@ -38,4 +38,8 @@ public class MinDiapasonTest {
                 is(2)
         );
     }
+    @Test
+    public void whenAllLength(){
+        assertThat(MinDiapason.findMin(new int[] {3, 3, 3, 1}, 0, 3), is(1));
+    }
 }

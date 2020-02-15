@@ -19,4 +19,11 @@ public class MortgageTest {
         int year = mortgage.year(100, 120, 50);
         assertThat(year, is(2));
     }
+    @Test
+    public void when100Year() {
+        Mortgage mortgage = new Mortgage();
+        int year = mortgage.year(100, 100, 90);
+        assertThat(year, is(4));
+    }
+
 }

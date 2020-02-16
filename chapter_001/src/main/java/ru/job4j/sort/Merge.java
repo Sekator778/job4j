@@ -36,6 +36,5 @@ public class Merge {
                 new int[]{2, 4, 6, 8, 10}
         );
         System.out.println(Arrays.toString(rsl));
-
     }
 }

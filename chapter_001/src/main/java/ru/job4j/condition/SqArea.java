@@ -8,7 +8,6 @@ public class SqArea {
         return s;
     }
 
-
     public static void main(String[] args) {
         double result2 = SqArea.square(6, 2);
         double result1 = SqArea.square(4, 1);

@@ -36,6 +36,12 @@ public class Tracker {
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
 
+    /**
+     * Метод возвращает новый масив.
+     * Который состоит из старого за исключением null ячеек
+     *
+     * @return цельный масив
+     */
     public Item[] findAll() {
         Item[] newItems = new Item[items.length];
         int size = 0;
@@ -49,11 +55,15 @@ public class Tracker {
         return newItems;
     }
 
-    public Item[] findByName(String key) {
+    /**
+     * @param name имя итема итему
+     * @return возвращаем масив елементов у которых одинаковое имя
+     */
+    public Item[] findByName(String name) {
         Item[] newItems = new Item[items.length];
         int size = 0;
         for (int i = 0; i < this.position; i++) {
-            if (items[i].getId().equals(key)) {
+            if (items[i].getId().equals(name)) {
                 newItems[size] = items[i];
                 size++;
             }
@@ -62,6 +72,10 @@ public class Tracker {
         return newItems;
     }
 
+    /**
+     * @param id уникальный ключ у кажого итема
+     * @return получаем итем
+     */
     public Item findById(String id) {
         Item item = new Item(null);
         for (int i = 0; i < this.position; i++) {
@@ -70,5 +84,35 @@ public class Tracker {
             }
         }
         return item;
+    }
+
+    /**
+     * @param id уникальный ключ у кажого итема
+     * @return возвращает индекс елемента в масиве итемов items
+     */
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+    /**
+     * @param id   старый айди
+     * @param item новый итем с новым айди
+     * @return пока не ясно что тестить
+     */
+    public boolean replace(String id, Item item) {
+        if (!(indexOf(id) >= 0)) {
+            return false;
+        }
+        int index = indexOf(id);
+        item.setId(id);
+        items[index] = item;
+        return true;
     }
 }

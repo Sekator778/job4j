@@ -115,4 +115,29 @@ public class Tracker {
         items[index] = item;
         return true;
     }
+
+    public boolean delete(String id) {
+        if (!(indexOf(id) >= 0)) {
+            return false;
+        }
+        int index = indexOf(id);
+        System.arraycopy(items, index + 1, items, index, (position - index));
+        items[position] = null;
+        position--;
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Tracker tracker = new Tracker();
+        Item item = new Item("test1");
+        Item item1 = new Item(null);
+        Item item2 = new Item("test2");
+        tracker.add(item);
+        tracker.add(item1);
+        tracker.add(item2);
+        System.out.println(Arrays.toString(tracker.items));
+
+        tracker.delete(item.getId());
+        System.out.println(Arrays.toString(tracker.items));
+    }
 }

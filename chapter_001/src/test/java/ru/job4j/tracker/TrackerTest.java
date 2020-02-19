@@ -35,8 +35,9 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         Item[] newItems = tracker.findAll();
-        Item[] check = {new Item("test1"), new Item("test2")};
-        System.out.println(" как ту сравнить масивы");
-
+        Item[] check = new Item[2];
+        check[0] = item;
+        check[1] = item2;
+        assertThat(newItems, is(check));
     }
 }

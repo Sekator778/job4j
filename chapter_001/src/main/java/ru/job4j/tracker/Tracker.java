@@ -63,7 +63,7 @@ public class Tracker {
         Item[] newItems = new Item[items.length];
         int size = 0;
         for (int i = 0; i < this.position; i++) {
-            if (items[i].getId().equals(name)) {
+            if (items[i].getName().equals(name)) {
                 newItems[size] = items[i];
                 size++;
             }
@@ -125,19 +125,5 @@ public class Tracker {
         items[position] = null;
         position--;
         return true;
-    }
-
-    public static void main(String[] args) {
-        Tracker tracker = new Tracker();
-        Item item = new Item("test1");
-        Item item1 = new Item(null);
-        Item item2 = new Item("test2");
-        tracker.add(item);
-        tracker.add(item1);
-        tracker.add(item2);
-        System.out.println(Arrays.toString(tracker.items));
-
-        tracker.delete(item.getId());
-        System.out.println(Arrays.toString(tracker.items));
     }
 }

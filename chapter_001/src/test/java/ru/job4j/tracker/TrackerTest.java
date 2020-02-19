@@ -2,9 +2,6 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -24,7 +21,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test10");
         tracker.add(item);
-        Item[] newItems = tracker.findByName(item.getId());
+        Item[] newItems = tracker.findByName(item.getName());
         assertThat(newItems[0].getName(), is(item.getName()));
 
     }

@@ -5,7 +5,7 @@ public class StartUI {
         boolean run = true;
         while (run) {
             this.showMenu();
-            int select = input.askInt("Select: \n");
+            int select = input.askInt("Select:" + System.lineSeparator());
             if (select == 0) {
                 StartUI.createItem(input, tracker);
             } else if (select == 1) {
@@ -40,7 +40,7 @@ public class StartUI {
     }
 
     public static void replace(Input input, Tracker tracker) {
-        String nameNew = input.askStr("=== Edit item (replace) === \n === Enter name newItem === \n");
+        String nameNew = input.askStr("=== Edit item (replace) ===" + System.lineSeparator() + " === Enter name newItem === ");
         String idOld = input.askStr("=== Enter id item for replace ===");
         if (tracker.replace(idOld, new Item(nameNew))) {
             System.out.println("=== Item replaced ===");
@@ -51,7 +51,7 @@ public class StartUI {
 
     public static void delete(Input input, Tracker tracker) {
         System.out.println();
-        String id = input.askStr("=== Delete item === \n === Enter id Item for delete === \n");
+        String id = input.askStr("=== Delete item ===" + System.lineSeparator() + "=== Enter id Item for delete ===" + System.lineSeparator());
         if (tracker.delete(id)) {
             System.out.println("=== delete successful ===");
         } else {
@@ -66,7 +66,7 @@ public class StartUI {
     }
 
     public static void findByName(Input input, Tracker tracker) {
-        String name = input.askStr("=== Find items by name ===\n === Enter name Item === \n");
+        String name = input.askStr("=== Find items by name ===" + System.lineSeparator() + "=== Enter name Item === " + System.lineSeparator());
         Item[] items = (tracker.findByName(name));
         for (Item item : items) {
             System.out.println(item.getId());

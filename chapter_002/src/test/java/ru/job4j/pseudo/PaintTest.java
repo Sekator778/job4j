@@ -34,6 +34,7 @@ public class PaintTest {
         pic.add("8 8  ");
         pic.add("8   8");
         pic.add("8888888");
+        pic.add("");
         assertThat(new String(out.toByteArray()), is(pic.toString()));
         // возвращаем обратно стандартный вывод в консоль.
         System.setOut(stdout);

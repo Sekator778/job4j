@@ -65,7 +65,7 @@ public class StartUI {
         if (tracker.findById(id) == null) {
             System.out.println(" wrong id ");
         } else {
-            System.out.println(tracker.findById(id).getName());
+            System.out.println("name: " + tracker.findById(id).getName() + " id:" + tracker.findById(id).getId());
         }
     }
 

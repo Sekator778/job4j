@@ -43,16 +43,6 @@ public class Tracker {
      * @return цельный масив
      */
     public Item[] findAll() {
-//        Item[] newItems = new Item[items.length];
-//        int size = 0;
-//        for (int i = 0; i < this.position; i++) {
-//            if (items[i] != null) {
-//                newItems[size] = items[i];
-//                size++;
-//            }
-//        }
-//        newItems = Arrays.copyOf(newItems, size);
-//        return newItems;
         return Arrays.copyOf(items, position);
     }
 

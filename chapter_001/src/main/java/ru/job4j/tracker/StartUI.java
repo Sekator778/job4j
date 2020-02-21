@@ -35,7 +35,7 @@ public class StartUI {
         System.out.println("=== Show all items ===");
         Item[] items = tracker.findAll();
         for (Item item : items) {
-            System.out.println(item.getName() + " " + item.getId());
+            System.out.println("name: " + item.getName() + " id:" + item.getId());
         }
     }
 
@@ -62,10 +62,11 @@ public class StartUI {
     public static void findItemById(Input input, Tracker tracker) {
         System.out.println("=== Find item by Id ===");
         String id = input.askStr("=== Enter id Item ===");
-        if (tracker.findById(id) == null) {
+        Item item = tracker.findById(id);
+        if (item == null) {
             System.out.println(" wrong id ");
         } else {
-            System.out.println("name: " + tracker.findById(id).getName() + " id:" + tracker.findById(id).getId());
+            System.out.println("name: " + item.getName() + " id:" + item.getId());
         }
     }
 
@@ -73,7 +74,7 @@ public class StartUI {
         String name = input.askStr("=== Find items by name ===" + System.lineSeparator() + "=== Enter name Item === " + System.lineSeparator());
         Item[] items = (tracker.findByName(name));
         for (Item item : items) {
-            System.out.println(item.getId());
+            System.out.println("name: " + item.getName() + " id:" + item.getId());
         }
     }
 

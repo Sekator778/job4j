@@ -26,22 +26,6 @@ public class TrackerTest {
 
     }
 
-//    @Test
-//    public void whenFindAllItem() {
-//        Tracker tracker = new Tracker();
-//        Item item = new Item("test1");
-//        Item item1 = new Item(null);
-//        Item item2 = new Item("test2");
-//        tracker.add(item);
-//        tracker.add(item1);
-//        tracker.add(item2);
-//        Item[] newItems = tracker.findAll();
-//        Item[] check = new Item[2];
-//        check[0] = item;
-//        check[1] = item2;
-//        assertThat(newItems, is(check));
-//    }
-
     @Test
     public void whenFindAllItem() {
         Tracker tracker = new Tracker();

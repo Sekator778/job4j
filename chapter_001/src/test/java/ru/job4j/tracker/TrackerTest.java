@@ -62,4 +62,23 @@ public class TrackerTest {
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
     }
+
+    /**
+     * тест метод показывет полиморфизм а именно
+     * мы имеем 2 реализации интерфейса Input
+     *при вызове StartUI.createItem(input...
+     * мы подменяем ConsoleInput на StubInput
+     *
+     */
+    @Test
+    public void whenStartUICreateItem() {
+        String[] answer = {"fix method"};
+        Input input = new StubInput(answer);
+        Tracker tracker = new Tracker();
+        StartUI.createItem(input, tracker);
+        Item ourIn = tracker.findAll()[0];
+        Item expect = new Item("fix method");
+        assertThat(ourIn.getName(), is(expect.getName()));
+
+    }
 }

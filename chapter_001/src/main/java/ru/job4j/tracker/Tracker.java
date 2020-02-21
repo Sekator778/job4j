@@ -77,7 +77,11 @@ public class Tracker {
      * @return получаем итем
      */
     public Item findById(String id) {
-            return items[indexOf(id)];
+        int index = indexOf(id);
+        if (index != -1) {
+            return items[index];
+        }
+        return null;
     }
 
     /**
@@ -102,7 +106,7 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
-        if (!(index >= 0)) {
+        if (index == -1) {
             return false;
         }
         item.setId(id);
@@ -111,7 +115,7 @@ public class Tracker {
     }
 
     public boolean delete(String id) {
-        if (!(indexOf(id) >= 0)) {
+        if (indexOf(id) == -1) {
             return false;
         }
         int index = indexOf(id);

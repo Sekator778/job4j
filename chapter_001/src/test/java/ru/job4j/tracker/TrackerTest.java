@@ -79,6 +79,17 @@ public class TrackerTest {
         Item ourIn = tracker.findAll()[0];
         Item expect = new Item("fix method");
         assertThat(ourIn.getName(), is(expect.getName()));
+    }
 
+    @Test
+    public void whenReplaceItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("old item");
+        tracker.add(item);
+        String[] answers = {item.getId(), "new item"
+        };
+        StartUI.replaceItem(new StubInput(answers), tracker);
+        Item replaced = tracker.findById(item.getId());
+        assertThat(replaced.getName(), is("new item"));
     }
 }

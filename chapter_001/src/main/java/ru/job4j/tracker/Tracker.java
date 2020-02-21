@@ -43,16 +43,17 @@ public class Tracker {
      * @return цельный масив
      */
     public Item[] findAll() {
-        Item[] newItems = new Item[items.length];
-        int size = 0;
-        for (int i = 0; i < this.position; i++) {
-            if (items[i].getName() != null) {
-                newItems[size] = items[i];
-                size++;
-            }
-        }
-        newItems = Arrays.copyOf(newItems, size);
-        return newItems;
+//        Item[] newItems = new Item[items.length];
+//        int size = 0;
+//        for (int i = 0; i < this.position; i++) {
+//            if (items[i] != null) {
+//                newItems[size] = items[i];
+//                size++;
+//            }
+//        }
+//        newItems = Arrays.copyOf(newItems, size);
+//        return newItems;
+        return Arrays.copyOf(items, position);
     }
 
     /**
@@ -115,10 +116,10 @@ public class Tracker {
     }
 
     public boolean delete(String id) {
-        if (indexOf(id) == -1) {
+        int index = indexOf(id);
+        if (index == -1) {
             return false;
         }
-        int index = indexOf(id);
         System.arraycopy(items, index + 1, items, index, (position - index));
         items[position] = null;
         position--;

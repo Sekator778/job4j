@@ -26,14 +26,28 @@ public class TrackerTest {
 
     }
 
+//    @Test
+//    public void whenFindAllItem() {
+//        Tracker tracker = new Tracker();
+//        Item item = new Item("test1");
+//        Item item1 = new Item(null);
+//        Item item2 = new Item("test2");
+//        tracker.add(item);
+//        tracker.add(item1);
+//        tracker.add(item2);
+//        Item[] newItems = tracker.findAll();
+//        Item[] check = new Item[2];
+//        check[0] = item;
+//        check[1] = item2;
+//        assertThat(newItems, is(check));
+//    }
+
     @Test
     public void whenFindAllItem() {
         Tracker tracker = new Tracker();
         Item item = new Item("test1");
-        Item item1 = new Item(null);
         Item item2 = new Item("test2");
         tracker.add(item);
-        tracker.add(item1);
         tracker.add(item2);
         Item[] newItems = tracker.findAll();
         Item[] check = new Item[2];
@@ -66,9 +80,8 @@ public class TrackerTest {
     /**
      * тест метод показывет полиморфизм а именно
      * мы имеем 2 реализации интерфейса Input
-     *при вызове StartUI.createItem(input...
+     * при вызове StartUI.createItem(input...
      * мы подменяем ConsoleInput на StubInput
-     *
      */
     @Test
     public void whenStartUICreateItem() {

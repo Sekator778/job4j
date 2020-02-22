@@ -26,8 +26,8 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput() {
-        String[] data = {"one", "1"};
-        ValidateInput input = new ValidateStubInput(data);
+
+        ValidateInput input = new ValidateInput(new StubInput(new String[]  {"one", "1"}));
         input.askInt("Enter");
         assertThat(
                 out.toString(),
@@ -37,12 +37,27 @@ public class ValidateInputTest {
 
     @Test
     public void whenMaxNumberInput() {
-        String[] data = {"6", "1"};
-        ValidateInput input = new ValidateStubInput(data);
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"6", "1"}));
         input.askInt("Enter", 5);
         assertThat(
                 out.toString(),
                 is(String.format("Please select key from menu.%n"))
         );
+    }
+
+        @Test
+        public void whenInvalidInput2() {
+            ByteArrayOutputStream mem = new ByteArrayOutputStream();
+            PrintStream out = System.out;
+            System.setOut(new PrintStream(mem));
+            ValidateInput input = new ValidateInput(
+                    new StubInput(new String[] {"one", "1"})
+            );
+            input.askInt("Enter");
+            assertThat(
+                    mem.toString(),
+                    is(String.format("Please enter validate data again.%n"))
+            );
+            System.setOut(out);
     }
 }

@@ -17,7 +17,6 @@ import java.util.StringJoiner;
 
 public class PaintTest {
     private final PrintStream stdout = System.out;
-    // буфер для результата.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
     @Before

@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -93,8 +94,7 @@ public class Tracker {
             return false;
         }
         item.setId(id);
-        items.remove(index);
-        items.add(index, item);
+        items.set(index, item);
         return true;
     }
 

@@ -26,7 +26,7 @@ public class CompareItemTest {
         List<String> nameUp = new ArrayList<>();
         Collections.sort(list, new ItemUp());
         for (Item item : list
-             ) {
+        ) {
             nameUp.add(item.getName());
         }
         assertThat(nameUp, is(expectList));

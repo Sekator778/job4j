@@ -44,11 +44,29 @@ public class CompareItemTest {
                 "Olga", "Karl", "Jan", "Anna"
         );
         List<String> nameUp = new ArrayList<>();
-        Collections.sort(list, new ItemDown());
+        list.sort(new ItemDown());
         for (Item item : list
         ) {
             nameUp.add(item.getName());
         }
         assertThat(nameUp, is(expectList));
+    }
+
+    @Test
+    public void compareDown2() {
+        List<Item> list = Arrays.asList(
+                new Item("Jan"),
+                new Item("Karl"),
+                new Item("Olga"),
+                new Item("Anna")
+        );
+        List<Item> expectList = Arrays.asList(
+                new Item("Olga"),
+                new Item("Karl"),
+                new Item("Jan"),
+                new Item("Anna")
+        );
+        list.sort(new ItemDown());
+        assertThat(list, is(expectList));
     }
 }

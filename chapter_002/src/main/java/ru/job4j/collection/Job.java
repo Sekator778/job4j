@@ -23,7 +23,7 @@ public class Job implements Comparable<Job> {
         return "Job{" +
                 "name='" + name + '\'' +
                 ", priority=" + priority +
-                '}';
+                "}\n";
     }
 
     @Override

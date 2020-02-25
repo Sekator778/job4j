@@ -28,7 +28,7 @@ public class BankService {
             if (user.getPassport().equals(passport)) {
                 return user;
             } else {
-                System.out.println("no find User");
+                throw new IllegalArgumentException("no find User");
             }
         }
         return null;

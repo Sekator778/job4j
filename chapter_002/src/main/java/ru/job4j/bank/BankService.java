@@ -17,8 +17,6 @@ public class BankService {
         List<Account> list = users.get(user);
         if (!list.contains(account)) {
             list.add(account);
-        } else {
-            System.out.println("This account is present");
         }
     }
 
@@ -27,8 +25,6 @@ public class BankService {
         ) {
             if (user.getPassport().equals(passport)) {
                 return user;
-            } else {
-                throw new IllegalArgumentException("no find User");
             }
         }
         return null;
@@ -41,8 +37,6 @@ public class BankService {
         ) {
             if (acc.getRequisite().equals(requisite)) {
                 return acc;
-            } else {
-                System.out.println("no find Account");
             }
         }
         return null;

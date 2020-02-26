@@ -14,9 +14,11 @@ public class StringCompare2 implements Comparator<String> {
         for (int i = 0; i < lim; i++) {
             if (value[i] != other[i]) {
                 result = Character.compare(value[i], other[i]);
-            } else {
-                result = len1 - len2;
+                break;
             }
+        }
+        if (result == 0) {
+            result = len1 - len2;
         }
         return result;
     }

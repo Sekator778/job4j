@@ -9,22 +9,18 @@ public class Departments {
      * @param deps Множество департаментов.
      */
     public static List<String> fillGaps(List<String> deps) {
-        HashSet<String> tmp = new LinkedHashSet<>();
-        ArrayList<String> rsl = new ArrayList<>();
-        for (String value : deps) {
-            String start = "";
-            for (String el : value.split("/")) {
-                tmp.add(el + "/");
+            HashSet<String> tmp = new HashSet<>();
+            StringBuilder sb = new StringBuilder();
+            for (String value : deps) {
+                String start = "";
+                for (String el : value.split("/")) {
+                    tmp.add(start + "/" + el);
+                    sb.append(el + "/");
+                    tmp.add(sb.toString());
+                }
             }
+            return new ArrayList<>(tmp);
         }
-        StringBuilder sb = new StringBuilder();
-        for (String s : tmp
-        ) {
-            sb.append(s);
-            rsl.add(sb.toString().substring(0, sb.length() - 1));
-        }
-        return rsl;
-    }
 
     public static void sortAsc(List<String> orgs) {
     }

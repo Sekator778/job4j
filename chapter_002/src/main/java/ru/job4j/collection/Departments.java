@@ -21,7 +21,7 @@ public class Departments {
         for (String s : tmp
         ) {
             sb.append(s);
-            rsl.add(sb.toString());
+            rsl.add(sb.toString().substring(0, sb.length() - 1));
         }
         return rsl;
     }

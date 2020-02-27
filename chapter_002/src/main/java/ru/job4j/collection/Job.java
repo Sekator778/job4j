@@ -20,10 +20,7 @@ public class Job implements Comparable<Job> {
 
     @Override
     public String toString() {
-        return "Job{" +
-                "name='" + name + '\'' +
-                ", priority=" + priority +
-                "}\n";
+        return "Job{" + "name='" + name + '\'' + ", priority=" + priority + "}\n";
     }
 
     @Override

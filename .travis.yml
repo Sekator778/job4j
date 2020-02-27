@@ -10,9 +10,6 @@ sudo: false
 # Здесь используется сторонни сервис https://codecov.io/
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - env:
-      global:
-        - CODECOV_TOKEN="6668080b-5491-4ed7-a940-13ee979e4571"
 
 # Отправлять уведомление на почтуyouremail@smtp.ru(Изменить на свою) если сборка упала
 notifications:

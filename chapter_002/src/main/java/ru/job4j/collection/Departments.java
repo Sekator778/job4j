@@ -10,7 +10,7 @@ public class Departments {
      */
     public static List<String> fillGaps(List<String> deps) {
         HashSet<String> tmp = new LinkedHashSet<>();
-        HashSet<String> rsl = new HashSet<String>();
+        ArrayList<String> rsl = new ArrayList<>();
         for (String value : deps) {
             String start = "";
             for (String el : value.split("/")) {
@@ -23,7 +23,7 @@ public class Departments {
             sb.append(s);
             rsl.add(sb.toString());
         }
-        return new ArrayList<>(rsl);
+        return rsl;
     }
 
     public static void sortAsc(List<String> orgs) {
@@ -35,17 +35,17 @@ public class Departments {
     public static void main(String[] args) {
         List<String> input = new ArrayList<>();
         input.add("K1/SK1");
+        input.add("K1/SK2");
         input.add("SK1/SSK1");
+        input.add("K1/SK1/SSK1");
         input.add("K1/SK1/SSK2");
-//        input.add("K2");
-//        input.add("K2/SK1/SSK1");
-//        input.add("K2/SK1/SSK2");
+        input.add("K2");
+        input.add("K2/SK1/SSK1");
+        input.add("K2/SK1/SSK2");
         List<String> result = Departments.fillGaps(input);
         for (String s : result
         ) {
             System.out.println(s);
         }
-
-
     }
 }

@@ -20,10 +20,10 @@ public class SquareTest {
                 square.draw(),
                 is(
                         new StringJoiner(System.lineSeparator())
-                                .add("++++")
-                                .add("+     +")
-                                .add("+     +")
-                                .add("++++")
+                                .add("8888888")
+                                .add("8     8")
+                                .add("8     8")
+                                .add("8888888")
                                 .toString()
                 )
         );

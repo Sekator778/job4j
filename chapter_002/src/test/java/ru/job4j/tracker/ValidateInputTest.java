@@ -37,11 +37,11 @@ public class ValidateInputTest {
 
     @Test
     public void whenMaxNumberInput() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[] {"6", "1"}));
-        input.askInt("Enter", 5);
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"7", "7"}));
+        input.askInt("Enter", 1);
         assertThat(
                 out.toString(),
-                is(String.format("Please select key from menu.%n"))
+                is(String.format(""))
         );
     }
 

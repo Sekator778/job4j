@@ -15,7 +15,7 @@ public class CalculatorTest {
         calc.multiple(
                 0, 3, 1,
                 (value, index) -> (double) value + index,
-                result -> buffer.add(result)
+                buffer::add
         );
         assertThat(buffer, is(Arrays.asList(1D, 2D, 3D)));
     }
@@ -27,7 +27,7 @@ public class CalculatorTest {
         calc.multiple(
                 0, 3, 1,
                 (value, index) -> (double) value * index,
-                result -> buffer.add(result)
+                buffer::add
         );
         assertThat(buffer, is(Arrays.asList(0D, 1D, 2D)));
     }

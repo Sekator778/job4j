@@ -53,6 +53,8 @@ public class Line {
         return -1;
     }
 
+
+
     public static int[] compilePatternArray(String pattern) {
         int patternLength = pattern.length();
         int len = 0;
@@ -69,6 +71,7 @@ public class Line {
         }
         return null;
     }
+
 
 
 

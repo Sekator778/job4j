@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 /**
  * задача
  * на вход получаем 2 строки
- * определить или они(строки) состоят из тех же елементов
+ * определить или они(строки) состоят из тех же символов
  * регистр букв оставлен для боьшей сложности
  * <p>
  * в тесте добавляем букву А для отличия строки
@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 public class StringTwo {
 
     /**
+     * линейный поиск сложность
+     *
      * @param s1 - pattern строка по которой сравниваем
      * @param s2 - строка которую сравниваем
      */
@@ -120,7 +122,7 @@ public class StringTwo {
         s2 = s2 + "A";
         timer(s1, s2, 1);
         timer(s1, s2, 2);
-        timer("mama", "MaMA", 1);
-        timer("mama", "MaMA", 2);
+        timer("mama", "volvo", 1);
+        timer("mama", "volvo", 2);
     }
 }

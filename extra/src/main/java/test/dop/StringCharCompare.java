@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * <p>
  * в тесте добавляем букву А для отличия строки
  */
-public class StringTwo {
+public class StringCharCompare {
 
     /**
      * линейный поиск сложность

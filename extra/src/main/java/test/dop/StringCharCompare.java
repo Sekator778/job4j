@@ -19,24 +19,21 @@ public class StringCharCompare {
      * @param s1 - pattern строка по которой сравниваем
      * @param s2 - строка которую сравниваем
      */
-    static void indentinity(String s1, String s2) {
+    public static boolean indentinity(String s1, String s2) {
+        boolean rsl = true;
         char[] pattern = s1.toCharArray();
         ArrayList<Character> list = new ArrayList<>();
         for (char ch : pattern
         ) {
             list.add(ch);
         }
-        int rsl = 0;
         for (int i = 0; i < s2.length(); i++) {
             if (!list.contains(s2.charAt(i))) {
-//                System.out.println("no");
-                rsl = -1;
+                rsl = false;
                 break;
             }
         }
-        if (rsl == 0) {
-            System.out.println("yes");
-        }
+        return rsl;
     }
 
     /**
@@ -50,8 +47,8 @@ public class StringCharCompare {
      * @param s1 строка
      * @param s2 строка
      */
-    static void indentinity2(String s1, String s2) {
-        int rsl = 0;
+    public static boolean indentinity2(String s1, String s2) {
+        boolean rsl = true;
         Set<Character> pattern = s1.chars()
                 .mapToObj(ch -> (char) ch).collect(Collectors.toSet());
         Set<Character> set = s2.chars()
@@ -60,14 +57,66 @@ public class StringCharCompare {
         for (Character ch : set
         ) {
             if (!pattern.contains(ch)) {
-//                System.out.print("no");
-                rsl = -1;
+                rsl = false;
                 break;
             }
         }
-        if (rsl == 0) {
-            System.out.println("yes");
+        return rsl;
+    }
+
+    /**
+     * добавляем в множество
+     * чекаем сайз
+     * добавляем снова в множество
+     * если сайз изменился значит есть другие
+     *
+     * @param s1 строка
+     * @param s2 строка
+     */
+    public static boolean indentinity3(String s1, String s2) {
+        boolean rsl = false;
+        Set<Character> set = s1.chars()
+                .mapToObj(ch -> (char) ch).collect(Collectors.toSet());
+        int size = set.size();
+        set.addAll(s2.chars()
+                .mapToObj(ch -> (char) ch).collect(Collectors.toSet()));
+        if (size == set.size()) {
+            rsl = true;
         }
+        return rsl;
+    }
+
+    /**
+     * тут ньюанс что первая должна быть короче 2й
+     * тогда по разности длин также узнем есть ли еще
+     * какието символы в2й строке кроме символов 1й строки
+     * <p>
+     * тут делаем тоже что и с листом
+     * но наблюдаем преимущество хешмапы
+     * как она шустро по ключам работает
+     *
+     * @param s1 строка
+     * @param s2 строка
+     */
+    public static boolean indentinity4(String s1, String s2) {
+        boolean rsl = false;
+        int x = 1;
+        char[] one = s1.toCharArray();
+        char[] two = s2.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
+        for (Character ch : one
+        ) {
+            map.put(ch, x);
+        }
+        int size = map.size();
+        for (Character ch : two
+        ) {
+            map.putIfAbsent(ch, x); // просто put тот же результат
+        }
+        if (size == map.size()) {
+            rsl = true;
+        }
+        return rsl;
     }
 
     /**
@@ -95,23 +144,35 @@ public class StringCharCompare {
      * @param s2     - тестовые строки
      * @param number - номер алгоритма на выполнение
      */
-    public static void timer(String s1, String s2, int number) {
+    public static boolean timer(String s1, String s2, int number) {
+        boolean rsl = false;
         double after = System.currentTimeMillis();
         switch (number) {
             case 1:
-                indentinity(s1, s2);
+                rsl = indentinity(s1, s2);
                 break;
             case 2:
-                indentinity2(s1, s2);
+                rsl = indentinity2(s1, s2);
+                break;
+            case 3:
+                rsl = indentinity3(s1, s2);
+                break;
+            case 4:
+                rsl = indentinity4(s1, s2);
                 break;
             default:
                 System.out.println("error number");
         }
         System.out.printf("Time algorithm # %s - %s mS \n", number, (System.currentTimeMillis() - after));
-
-
+        return rsl;
     }
 
+    /**
+     * 1й раз максимум елемнтов в строку
+     * 2й раз минимальное слово
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         String s1 = "";
         String s2 = "";
@@ -119,10 +180,14 @@ public class StringCharCompare {
             s1 = (getRandom(100_000_000));
         }
         s2 = s1;
-        s2 = s2 + "A";
-        timer(s1, s2, 1);
-        timer(s1, s2, 2);
-        timer("mama", "volvo", 1);
-        timer("mama", "volvo", 2);
+//        s2 = s2 + "A";
+        System.out.println(timer(s1, s2, 1));
+        System.out.println(timer(s1, s2, 2));
+        System.out.println(timer(s1, s2, 3));
+        System.out.println(timer(s1, s2, 4));
+        System.out.println(timer("mama", "mamaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 1));
+        System.out.println(timer("mama", "mamaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 2));
+        System.out.println(timer("mama", "mamaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 3));
+        System.out.println(timer("mama", "mamaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 4));
     }
 }

@@ -87,10 +87,6 @@ public class StringCharCompare {
     }
 
     /**
-     * тут ньюанс что первая должна быть короче 2й
-     * тогда по разности длин также узнем есть ли еще
-     * какието символы в2й строке кроме символов 1й строки
-     * <p>
      * тут делаем тоже что и с листом
      * но наблюдаем преимущество хешмапы
      * как она шустро по ключам работает
@@ -180,7 +176,7 @@ public class StringCharCompare {
             s1 = (getRandom(100_000_000));
         }
         s2 = s1;
-//        s2 = s2 + "A";
+        s2 = s2 + "A";
         System.out.println(timer(s1, s2, 1));
         System.out.println(timer(s1, s2, 2));
         System.out.println(timer(s1, s2, 3));

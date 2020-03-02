@@ -9,8 +9,9 @@ public class Profiles {
     }
 
     public List<Address> collectUnique(List<Profile> profiles) {
-        List<Address> tmp = collect(profiles);
-        tmp.sort(new AddressCompare());
-        return tmp.stream().distinct().collect(Collectors.toList());
+        return collect(profiles).stream()
+                .sorted(new AddressCompare())
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

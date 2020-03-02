@@ -45,6 +45,6 @@ public class StartUI {
         actions.add(new FindItemByIdAction());
         actions.add(new FindByNameAction());
         actions.add(new EndAction());
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
+//        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
     }
 }

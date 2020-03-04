@@ -7,4 +7,4 @@ I love Java !!!!!!
 
 [Вопросы для собеседования (минимум)](interview_questions/MinimumInterview.md#вопросы-для-собеседования-минимум)
 
-[How to build jars from IntelliJ](build_jars/BuildJars.MD#how-to-build-jars-from-intellijbuild_jars#How-to-build-jars-from-IntelliJ)
+"В курсе производилась работа с веткамы git."

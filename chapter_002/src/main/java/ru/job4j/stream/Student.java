@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Student implements Comparator<Student> {
+public class Student implements Comparable<Student> {
     private int score;
     private String surname;
 
@@ -18,27 +18,14 @@ public class Student implements Comparator<Student> {
         this.score = score;
     }
 
-    public Student() {
-    }
-
     @Override
     public String toString() {
         return surname + " : " + score;
     }
 
     @Override
-    public int compare(Student s1, Student s2) {
-        int rez;
-        if (s1 == null && s2 == null) {
-            rez = 0;
-        } else if (s1 == null) {
-            rez = 1;
-        } else if (s2 == null) {
-            rez = -1;
-        } else {
-            rez = Integer.compare(s2.getScore(), s1.getScore());
-        }
-        return rez;
+    public int compareTo(Student s2) {
+        return Integer.compare(s2.getScore(), this.getScore());
     }
 
     public static Map<String, Student> createStudentMap(List<Student> studentList) {
@@ -49,10 +36,9 @@ public class Student implements Comparator<Student> {
     }
 
     public static List<Student> levelOf(List<Student> students, int bound) {
-
         return students.stream()
-                .sorted(new Student())
                 .flatMap(Stream::ofNullable)
+                .sorted()
                 .takeWhile(s -> s.getScore() > bound)
                 .collect(Collectors.toList());
     }

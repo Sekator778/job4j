@@ -7,3 +7,4 @@ I love Java !!!!!!
 
 [Вопросы для собеседования (минимум)](interview_questions/MinimumInterview.md#вопросы-для-собеседования-минимум)
 master
+mistake now

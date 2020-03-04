@@ -6,3 +6,4 @@ I love Java !!!!!!
 [Вопросы для собеседования по темам обучения job4j.ru](interview_questions#вопросы-для-собеседования-по-темам-обучения-job4jru)
 
 [Вопросы для собеседования (минимум)](interview_questions/MinimumInterview.md#вопросы-для-собеседования-минимум)
+master

@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class StartUI {
+
     public void init(Input input, Tracker tracker, List<UserAction> actions) {
+        Consumer<String> output = null;
         boolean run = true;
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ", actions.size());
             UserAction action = actions.get(select);
-            run = action.execute(input, tracker);
+            run = action.execute(input, tracker, output);
         }
     }
 
@@ -27,6 +29,7 @@ public class StartUI {
         Input validateInput = new ValidateInput(input);
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
+
         actions.add(new CreateAction());
         actions.add(new ShowAllAction());
         actions.add(new ReplaceItemAction());

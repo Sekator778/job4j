@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -44,7 +45,8 @@ public class StartUITest {
         Item item = new Item("how how");
         tracker.add(item);
         ShowAllAction act = new ShowAllAction();
-        act.execute(new StubInput(new String[]{}), tracker);
+        Consumer<String> output = null;
+        act.execute(new StubInput(new String[]{}), tracker, output);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("name: " + item.getName() + " id:" + item.getId())
                 .toString();
@@ -57,7 +59,8 @@ public class StartUITest {
         Item item = new Item("find me");
         tracker.add(item);
         FindByNameAction operate = new FindByNameAction();
-        operate.execute(new StubInput(new String[]{"find me"}), tracker);
+        Consumer<String> output = null;
+        operate.execute(new StubInput(new String[]{"find me"}), tracker, output);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("name: " + item.getName() + " id:" + item.getId())
                 .toString();

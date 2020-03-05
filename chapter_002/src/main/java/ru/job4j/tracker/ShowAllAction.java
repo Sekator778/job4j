@@ -13,7 +13,7 @@ public class ShowAllAction implements UserAction {
     public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         List<Item> items = tracker.findAll();
         for (Item item : items) {
-            System.out.println("name: " + item.getName() + " id:" + item.getId());
+            output.accept("name: " + item.getName() + " id:" + item.getId());
         }
         return true;
     }

@@ -13,10 +13,8 @@ public class DeleteAction implements UserAction {
         String id = input.askStr("=== Enter id Item for delete ===" + System.lineSeparator());
         if (tracker.delete(id)) {
             output.accept("=== delete successful ===");
-//            System.out.println("=== delete successful ===");
         } else {
             output.accept("=== delete error ===");
-//            System.out.println("=== delete error ===");
         }
         return true;
     }

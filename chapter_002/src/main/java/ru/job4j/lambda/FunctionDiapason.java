@@ -10,6 +10,8 @@ public class FunctionDiapason {
      * в том что мы ему передадим
      * x -> чего сделать  (x)
      * в х подставляем впринцыпе все что хочем уже в самой функции
+     * ля лучшего понимания смотреть файл
+     * ru/job4j/lambda/FuncTest.java
      *
      * @param start - от ...
      * @param end - .. до

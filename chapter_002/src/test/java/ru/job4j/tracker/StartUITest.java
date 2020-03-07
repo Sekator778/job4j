@@ -29,9 +29,10 @@ public class StartUITest {
 
     @Test
     public void whenInit() {
+        Consumer<String> stringConsumer = System.out::println;
         StubInput input = new StubInput(new String[]{"0"});
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), Arrays.asList(new UserAction[]{action}));
+        new StartUI().init(input, new Tracker(), Arrays.asList(new UserAction[]{action}), stringConsumer);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Menu.")
                 .add("0. Stub action")
@@ -45,8 +46,8 @@ public class StartUITest {
         Item item = new Item("how how");
         tracker.add(item);
         ShowAllAction act = new ShowAllAction();
-        Consumer<String> output = null;
-        act.execute(new StubInput(new String[]{}), tracker, output);
+        Consumer<String> stringConsumer = System.out::println;
+        act.execute(new StubInput(new String[]{}), tracker, stringConsumer);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("name: " + item.getName() + " id:" + item.getId())
                 .toString();
@@ -59,8 +60,8 @@ public class StartUITest {
         Item item = new Item("find me");
         tracker.add(item);
         FindByNameAction operate = new FindByNameAction();
-        Consumer<String> output = null;
-        operate.execute(new StubInput(new String[]{"find me"}), tracker, output);
+        Consumer<String> stringConsumer = System.out::println;
+        operate.execute(new StubInput(new String[]{"find me"}), tracker, stringConsumer);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("name: " + item.getName() + " id:" + item.getId())
                 .toString();

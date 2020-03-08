@@ -11,6 +11,7 @@
     <modules>
         <module>chapter_001</module>
         <module>chapter_002</module>
+        <module>MyTest</module>
     </modules>
 
     <properties>

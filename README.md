@@ -7,7 +7,3 @@ I love Java !!!!!!
 
 [Вопросы для собеседования (минимум)](interview_questions/MinimumInterview.md#вопросы-для-собеседования-минимум)
 
-hot
-master
-mistake now 
-2 mistake

@@ -28,7 +28,7 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput() {
         Consumer<String> stringConsumer = System.out::println;
-        ValidateInput input = new ValidateInput(new StubInput(new String[]  {"one", "1"}), stringConsumer);
+        ValidateInput input = new ValidateInput(new StubInput(new String[]{"one", "1"}), stringConsumer);
         input.askInt("Enter");
         assertThat(
                 out.toString(),
@@ -39,7 +39,7 @@ public class ValidateInputTest {
     @Test
     public void whenMaxNumberInput() {
         Consumer<String> stringConsumer = System.out::println;
-        ValidateInput input = new ValidateInput(new StubInput(new String[] {"7", "7"}), stringConsumer);
+        ValidateInput input = new ValidateInput(new StubInput(new String[]{"7", "7"}), stringConsumer);
         input.askInt("Enter", 1);
         assertThat(
                 out.toString(),
@@ -47,21 +47,50 @@ public class ValidateInputTest {
         );
     }
 
-        @Test
-        public void whenInvalidInput2() {
-            ByteArrayOutputStream mem = new ByteArrayOutputStream();
-            PrintStream out = System.out;
-            System.setOut(new PrintStream(mem));
-            Consumer<String> stringConsumer = System.out::println;
-            ValidateInput input = new ValidateInput(
-                    new StubInput(new String[] {"one", "1"}),
-                    stringConsumer
-            );
-            input.askInt("Enter");
-            assertThat(
-                    mem.toString(),
-                    is(String.format("Please enter validate data again.%n"))
-            );
-            System.setOut(out);
+    @Test
+    public void whenInvalidInput2() {
+        ByteArrayOutputStream mem = new ByteArrayOutputStream();
+        PrintStream out = System.out;
+        System.setOut(new PrintStream(mem));
+        Consumer<String> stringConsumer = System.out::println;
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[]{"one", "1"}),
+                stringConsumer
+        );
+        input.askInt("Enter");
+        assertThat(
+                mem.toString(),
+                is(String.format("Please enter validate data again.%n"))
+        );
+        System.setOut(out);
     }
+
+    @Test
+    public void whenValidKey() {
+        ValidateInput validateInput = new ValidateInput(
+        new StubInput(new String[]{"0"}), System.out::println);
+        int result = validateInput.askInt("Enter", 1);
+        assertThat(result, is(0));
+    }
+
+    @Test
+    public void whenInvalidInput3() {
+        PrintStream std = System.out;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        ValidateInput validateInput = new ValidateInput(
+                new StubInput(new String[] {"one", "1"}), System.out::println);
+        validateInput.askInt("Enter");
+        assertThat(out.toString(), is(String.format("Please enter validate data again.%n")));
+        System.setOut(std);
+    }
+
+    @Test
+    public void whenValidInput() {
+        ValidateInput validateInput = new ValidateInput(
+                new StubInput(new String[] {"0"}), System.out::println);
+        int result = validateInput.askInt("Enter");
+        assertThat(result, is(0));
+    }
+
 }

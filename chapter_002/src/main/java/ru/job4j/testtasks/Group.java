@@ -26,18 +26,18 @@ public class Group {
                                             left.addAll(right);
                                             return left;
                                         }
-                                        )
+                                )
                         )
                 );
     }
 
     static class Holder {
-    String key, value;
+        String key, value;
 
-    Holder(String key, String value) {
-        this.key = key;
-        this.value = value;
+        Holder(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
     }
-}
 }
 

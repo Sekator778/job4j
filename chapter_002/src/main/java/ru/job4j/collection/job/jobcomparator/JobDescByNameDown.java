@@ -1,6 +1,6 @@
-package ru.job4j.collection.jobcomparator;
+package ru.job4j.collection.job.jobcomparator;
 
-import ru.job4j.collection.Job;
+import ru.job4j.collection.job.Job;
 
 import java.util.Comparator;
 

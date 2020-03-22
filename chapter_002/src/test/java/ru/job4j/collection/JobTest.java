@@ -1,10 +1,11 @@
 package ru.job4j.collection;
 
 import org.junit.Test;
-import ru.job4j.collection.jobcomparator.JobDescByNameDown;
-import ru.job4j.collection.jobcomparator.JobDescByNameUp;
-import ru.job4j.collection.jobcomparator.JobDescByPriorityDown;
-import ru.job4j.collection.jobcomparator.JobDescByPriorityUp;
+import ru.job4j.collection.job.Job;
+import ru.job4j.collection.job.jobcomparator.JobDescByNameDown;
+import ru.job4j.collection.job.jobcomparator.JobDescByNameUp;
+import ru.job4j.collection.job.jobcomparator.JobDescByPriorityDown;
+import ru.job4j.collection.job.jobcomparator.JobDescByPriorityUp;
 
 import java.util.Comparator;
 

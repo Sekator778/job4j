@@ -17,7 +17,9 @@ public class Subject {
         Student student1 = new Student("Alex", section1, 30);
         Student student2 = new Student("Bob", section2, 30);
         Student student3 = new Student("Nick", section3, 40);
-        Student student4 = new Student("Lora", section4, 23);
+        Student student4 = new Student("Lora", section4, 21);
+        Student student5 = new Student("Dick", section4, 13);
+        Student student6 = new Student("Gay", section4, 33);
 
         List<Student> studentList = new ArrayList<>() {
             {
@@ -25,6 +27,8 @@ public class Subject {
                 add(student2);
                 add(student3);
                 add(student4);
+                add(student5);
+                add(student6);
             }
         };
         // подсчет количество чего то
@@ -120,5 +124,7 @@ public class Subject {
         for (Map.Entry<String, Set<String>>  entry : result.entrySet()) {
             System.out.println("Section " + entry.getKey() + " students are " + entry.getValue());
         }
+        System.out.println("групировка по интресам");
+
     }
 }

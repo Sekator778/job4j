@@ -5,10 +5,10 @@
 + [OOP]() ![icon][done]
 + [Collection lite](CollectionLite.md#collections-light) ![icon][done]
 + [FP, Lambda, Stream API](FPLambdaStreamAPI.md#fp-labmda-stream-api)![icon][done]
-+ [Collection pro](CollectionPro.md#collections-pro)![icon][done]
-+ [IO](IO.md#io)![icon][done]
-+ [SQL](SQL.md#sql)![icon][done]
-+ [SOLID](SOLID.md#solid)![icon][done]
++ [Collection pro](CollectionPro.md#collections-pro)
++ [IO](IO.md#io)
++ [SQL](SQL.md#sql)
++ [SOLID](SOLID.md#solid)
 + [Multithreading](Multithreading.md#multithreading)
 + [XML](XML.md#xml)
 + [Servlet](Servlet.md#servlet)

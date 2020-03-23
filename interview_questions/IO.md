@@ -1,6 +1,6 @@
 ## IO
 
-+ [1. Расскажите общее идею что такое поток ввода-вывода?](#Расскажите-общее-идею-что-такое-поток-ввода-вывода)
++ [1. Расскажите общее идею что такое поток ввода-вывода?](#Расскажите-общую-идею-что-такое-поток-ввода-вывода)
 + [2. Что такое Java IO?](#Что-такое-Java-IO)
 + [3. Что такое Java NIO?](#Что-такое-Java-NIO)
 + [4. Что такое Scanner?](#Что-такое-Scanner)
@@ -37,7 +37,7 @@
 + [Что такое сериализация?](#Что-такое-сериализация)
 
 
-## Расскажите общее идею что такое поток ввода вывода
+## Расскажите общую идею что такое поток ввода вывода
 
 Цель создания InputStream и OutputStream это абстрактный доступ к вводу и выводу. Источник при этом не важен. 
 Это может быть файл, консоль, веб-страница. Stream - это бесконечный поток данных, подключенный к источнику данных.
@@ -56,7 +56,7 @@ IO API – (Input & Output) в первую очередь это Java API, ко
 3) System.err, System.in, System.out;
 4) при работе с буфером.
 
-![Иерархия](https://github.com/a11exe/job4j/blob/master/interview_questions/io_diagram.gif)
+![Иерархия](https://github.com/Sekator778/job4j/blob/master/interview_questions/io_diagram.gif)
 
 Для разных типов данных существуют разные реализации классов
 
@@ -108,6 +108,8 @@ RandomAccessFile может открываться в режиме чтения 
 
 ## Что такое Java NIO
 
+![вот почитать ](https://stackoverflow.com/questions/25537675/java-what-exactly-is-the-difference-between-nio-and-nio-2)
+
 | IO| NIO |
 | ---| --- |
 | Потокоориентированный| Буфер-ориентированный |
@@ -117,20 +119,19 @@ RandomAccessFile может открываться в режиме чтения 
 
 Недостатки IO:
 
-+ The File class lacked some important functionality, such as a copy method.
-+ It also defined many methods that returned boolean. As one can imagine, in case of an error, false was returned, rather than throwing an exception. The developer had, indeed, no way of knowing why it failed.
-+ Did not provide good handling on support of symbolic links.
-+ A limited set of file attributes was provided.
++ Класс File не обладал некоторыми важными функциями, такими как метод копирования.
++ Также определены многие методы, которые возвращают логическое значение. Как можно себе представить, в случае ошибки
+ было возвращено значение false, а не исключение. У разработчика действительно не было возможности узнать, почему это
+  не удалось.+ Did not provide good handling on support of symbolic links.
++ Предоставлен ограниченный набор атрибутов файла.
 
-To overcome these problems, java.nio package was introduced in java 4. The key features were:
++ Каналы и селекторы: канал является абстракцией низкоуровневых функций файловой системы, например, отображенные в память файлы.
++ Buffers: Буферизация для всех примитивных классов (кроме Boolean).
++ Charset: Charset (java.nio.charset), кодировщики и декодеры для сопоставления байтов и символов Unicode
 
-+ Channels and Selectors: A channel is an abstraction on lower-level file system features, e.g. memory-mapped files.
-+ Buffers: Buffering for all primitive classes (except for Boolean).
-+ Charset: Charset (java.nio.charset), encoders, and decoders to map bytes and Unicode symbols
-
-With java 7 the java.nio.file package is introduced providing a better support for handling symbolic links, 
-file attributes access and specially to support extended the file system through classes such 
-as **Path, Paths and Files**.
+С java 7 представлен пакет java.nio.file, обеспечивающий лучшую поддержку для обработки символических ссылок,
+доступ к атрибутам файлов и специально для поддержки расширенной файловой системы с помощью таких классов
+в качестве **Path, Paths and Files**.
 
 Состоит из 3 основных компонентов
 
@@ -236,8 +237,7 @@ Java Scanner class extends Object class and implements Iterator and Closeable in
 + nextInt ...
 
 [к оглавлению](#IO)
-
-## Что такое байтовый поток. Как он реализован внутри
+## Что такое байтовый поток Как он реализован внутри
 
 Byte streams работает с данными побайтово (8 bits). Например, FileInputStream используется для чтения и FileOutputStream для записи.
 Byte streams интерфейс, который внутри основан на байтовом массиве. В основе находится некий буфер который заполняется, вычитывается и заново заполняется.
@@ -249,6 +249,8 @@ Byte streams интерфейс, который внутри основан на
 [к оглавлению](#IO)
 
 ## Что такое символьный поток. Как он реализован внутри.
+
+[кодировки и т.д. снизу в дискусии много интересного ](https://dou.ua/forums/topic/8672/)
 
 В Java, символы хранятся в кодировке Unicode (16 bit). Символный поток позволяет читать данные символ за символом. Для пример FileReader и FileWriter символьные потоки.
 Можно задать свою кодировку
@@ -279,6 +281,7 @@ BufferedInputStream и BufferedOutputStream.
 + %n	Символ переноса строки
 + %t	Время
 + %x	Шестнадцатеричное целое
++ %s    string
 
 String output = String.format("%s = %d", "joe", 35);
 String.format(); Formatter
@@ -629,12 +632,12 @@ dosView.setArchive(true);
 ```
 
 **Summary**
-+ If we try to write to a file that doesn’t exist, the file will be created first and no exception will be thrown (except using Path method).
-+ Always close the output stream after writing the file content to release all resources. It will also help in not corrupting the file.
-+ Use PrintWriter is used to write formatted text.
-+ Use FileOutputStream to write binary data.
-+ Use DataOutputStream to write primitive data types.
-+ Use FileChannel to write larger files.
++ Если мы попытаемся записать файл, который не существует, файл будет создан первым, и не будет выброшено исключение (кроме использования метода Path).
++ Всегда закрывайте выходной поток после записи содержимого файла, чтобы освободить все ресурсы. Это также поможет не повредить файл.
++ Используйте PrintWriter для записи форматированного текста.
++ Используйте FileOutputStream для записи двоичных данных.
++ Используйте DataOutputStream для записи примитивных типов данных.
++ Используйте FileChannel для записи больших файлов.
 
 [к оглавлению](#IO)
 
@@ -670,7 +673,7 @@ dosView.setArchive(true);
     System.out.println(sc.next());
 ```
 
-+ **Reading the whole file in a List**
++ **Чтение всего файла в строку**
 ```java
     data = new String(Files.readAllBytes(Paths.get(fileName)));
 ```
@@ -684,11 +687,11 @@ dosView.setArchive(true);
 ```java
 server = new ServerSocket(4004); // серверсокет прослушивает порт 4004
 System.out.println("Сервер запущен!"); 
-clientSocket = server.accept(); // accept() будет ждать пока
+clientSocket = server.accept(); // accept() будет ждать пока клиент не подключиться
 
                 
 try { // установив связь и воссоздав сокет для общения с клиентом можно перейти
-                    
+         // читать           
     in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     // и отправлять
     out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));

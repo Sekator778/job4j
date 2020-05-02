@@ -556,11 +556,15 @@ Connection con = null;
 try{
     // load the Driver Class
     Class.forName("com.mysql.jdbc.Driver");
+//or for postgrSQL
+//   Class.forName("org.postgresql.Driver");
+//    static String url = "jdbc:postgresql://localhost:5432/sqlex";
+
  
     // create the connection now
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/UserDB",
-                    "pankaj",
-                    "pankaj123");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TestDB",
+                    "Sekator",
+                    "Sekator123");
     }catch (SQLException e) {
             System.out.println("Check database is UP and configs are correct");
             e.printStackTrace();

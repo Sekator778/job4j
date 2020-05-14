@@ -1,4 +1,4 @@
-## GC&JMM
+## GC
 
 + [1. Чем java отличается от с++?](#1-Чем-java-отличается-от-с)
 + [2. Что такое менеджер памяти?](#2-Что-такое-менеджер-памяти)
@@ -369,7 +369,8 @@ Permanent Generation — эта область содержит метаинфо
 -->     java -Xms128m -Xmx1024m
 
 Если процесс Java превысил -Xmx максимальный размер кучи Java,  java.lang.OutOfMemoryError будет брошен.
-[к оглавлению](#GC&JMM)
+
+[к оглавлению](#GC)
 
 java -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version
 

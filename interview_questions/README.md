@@ -10,10 +10,11 @@
 + [SQL](SQL.md#sql)![icon][done]
 + [GC](GC.md#GC)![icon][done]
 + [SOLID](SOLID.md#solid)
-+ [Multithreading](Multithreading.md#multithreading)
++ [Multithreading](Multithreading.md#multithreading)![icon][done]![icon][java]
 + [XML](XML.md#xml)
 + [Servlet](Servlet.md#servlet)
 + [Hibernate](Hibernate.md#hibernate)
 + [Spring](Spring.md#spring)
 
 [done]:done.png
+[java]:java_coffe.png

@@ -5,7 +5,7 @@
 + [OOP]() ![icon][done]
 + [Collection lite](CollectionLite.md#collections-light) ![icon][done]
 + [FP, Lambda, Stream API](FPLambdaStreamAPI.md#fp-labmda-stream-api)![icon][done]
-+ [Collection pro](CollectionPro.md#collections-pro)![icon][done]
++ [Collection pro](CollectionPro.md#collections-pro)![icon][done]![icon][java]
 + [IO](IO.md#io)![icon][done]
 + [SQL](SQL.md#sql)![icon][done]
 + [GC](GC.md#GC)![icon][done]
@@ -17,4 +17,4 @@
 + [Spring](Spring.md#spring)
 
 [done]:done.png
-[java]:java_coffe.png
+[java]:java.png

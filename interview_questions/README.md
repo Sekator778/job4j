@@ -11,8 +11,8 @@
 + [GC](GC.md#GC)![icon][done]
 + [SOLID](SOLID.md#solid)
 + [Multithreading](Multithreading.md#multithreading)![icon][done]![icon][java]
-+ [XML](XML.md#xml)
-+ [Servlet](Servlet.md#servlet)
++ [HTML, CSS, XML](XML.md#xml)![icon][done]
++ [Servlet](Servlet.md#servlet)![icon][done]
 + [Hibernate](Hibernate.md#hibernate)
 + [Spring](Spring.md#spring)
 

@@ -54,6 +54,7 @@
 + [51. Cors filter.](#51-Cors filter)
 
 
+
 ## 1 Что такое сервлет
 
 Сервлет является интерфейсом Java, реализация которого расширяет функциональные возможности сервера. 
@@ -711,9 +712,9 @@ XMLHttpRequestи API Fetch следуют той же политике прои�
 API, может запрашивать ресурсы только из того же источника, из которого было загружено приложение, если ответ из других
 источников не содержит правильных заголовков CORS.
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">link</a></tr>
-<a href="https://howtodoinjava.com/servlets/java-cors-filter-example/">sample cod</a></tr>
-<a href="https://issue.life/questions/16296145/set-cors-header-in-tomcat">sample cod second</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">link</a></br>
+<a href="https://howtodoinjava.com/servlets/java-cors-filter-example/">sample cod</a></br>
+<a href="https://issue.life/questions/16296145/set-cors-header-in-tomcat">sample cod second</br>
 
 
 

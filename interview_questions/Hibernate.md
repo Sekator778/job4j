@@ -274,36 +274,29 @@ Set<String> images = new HashSet<String>();
 
 ## 14 Расскажите про уровни изоляции Какие уровни поддерживаются в hibernate Как их устанавливать
 
-They're 4 mains transaction's isolation levels:
-
-+ read uncommited - imagine two transactions, 'A' and 'B'. 
-First, 'A' writes a data into one table without commiting the transaction. 
-After, 'B' reads the uncommited data and work on it. 
-But some error occurs on commiting the 'A' transaction and all changes are rollbacked. 
-In this case, 'B' continues to work on uncommited data by the 'A' transaction. This mode is very fast but can introduce a lot of data consistency problems.
-+ read commited - we still use the same scenario as for read uncommited, but commited data is locked. 
-It means that 'B' can't see uncommited data from the 'A' transaction. 'B' can see it only when 'A' will commit its transaction.
-+ repeatable read - this isolation level promotes the same data read, even if the data was changed meanwhile. 
-We continue to work with our 'A' and 'B' transactions. First, 'B' makes a SELECT query and lock selected rows. 
-After, 'A' makes an INSERT query. 'B' executes a new SELECT query with the same conditions as the first one. 
-'B' will now see the same results as previously (the second SELECT must be made under the same transaction as the first one).
-+ serializable - this level occurs when our 'B' transaction reads the data and lock whole data's table.
- It means that another transaction can't modify the data on this table. 
- Unlike read uncommited, this way is the most secure. But in the other hand, it's also the slowest solution.
-
-Hibernate starts the transactions by calling getTransaction() (JPA's implementation) or beginTransaction() (Hibernate's Session) methods. 
-According to used persistence mechanism, a transaction can be an instance of javax.persistence.EntityTransaction (for JPA) or org.hibernate.Transaction (for Hibernate's Session). 
-Both transaction are begun with begin() method, rollbacked thanks to rollback() one and commited through commit() invocation.
-
-To configure transactions isolation level in Hibernate, we need to change the property called *hibernate.connection.isolation*. 
-This property can take one from following entries: 
-+ 1 (read uncommited) 
-+ 2 (read commited) 
-+ 4 (repeatable read) 
-+ 8 (serializable)
-
-Normally, the isolation level is set at java.sql.Connection level, through setTransactionIsolation(int level) method. 
-Level passed in parameter should be one from Connection's constants:
+### Уровень изолированности транзакций
+ — условное значение, определяющее, в какой мере в результате выполнения логически параллельных транзакций в СУБД 
+ допускается получение несогласованных данных. Шкала уровней изолированности транзакций содержит ряд значений, 
+ проранжированных от наинизшего до наивысшего; более высокий уровень изолированности соответствует лучшей 
+ согласованности данных, но его использование может снижать количество физически параллельно выполняемых транзакций.
+  И наоборот, более низкий уровень изолированности позволяет выполнять больше параллельных транзакций, но снижает точность 
+  данных. Таким образом, выбирая используемый уровень изолированности транзакций, разработчик информационной системы в 
+  определённой мере обеспечивает выбор между скоростью работы и обеспечением гарантированной согласованности получаемых 
+  из системы данных.
+  <br>
++ Read uncommitted: (чтение незафиксированных данных)
+  Низший (первый) уровень изоляции. Он гарантирует только отсутствие потерянных обновлений.
++ Read committed (чтение фиксированных данных)
+  Большинство промышленных СУБД, в частности PostgreSQL и Oracle, по умолчанию используют именно этот уровень. 
+  На этом уровне обеспечивается защита от чернового, «грязного» чтения, тем не менее, в процессе работы одной транзакции
+  другая может быть успешно завершена и сделанные ею изменения зафиксированы. В итоге первая транзакция будет работать с другим набором данных.
++ Repeatable read (повторяемость чтения)
+  Уровень, при котором читающая транзакция «не видит» изменения данных, которые были ею ранее прочитаны. 
+  При этом никакая другая транзакция не может изменять данные, читаемые текущей транзакцией, пока та не окончена.
++ Serializable (упорядочиваемость)
+ Самый высокий уровень изолированности; транзакции полностью изолируются друг от друга, каждая выполняется так, 
+ как будто параллельных транзакций не существует. Только на этом уровне параллельные транзакции не подвержены 
+ эффекту «фантомного чтения».
  
 + Connection.TRANSACTION_READ_UNCOMMITTED, 
 + Connection.TRANSACTION_READ_COMMITTED, 
@@ -312,33 +305,45 @@ Level passed in parameter should be one from Connection's constants:
 
 [к оглавлению](#Hibernate)
 
-## 15 Что такое OplimisticLock Расскажите стратегии создания через version timestamp
+## 15 Что такое OplimisticLock Расскажите стратегию создания через version timestamp
+Чтобы использовать оптимистическую блокировку, нам нужно иметь сущность, включающую свойство с аннотацией @Version . 
+При его использовании каждая транзакция, которая читает данные, содержит значение свойства version.
+Прежде чем транзакция захочет выполнить обновление, она снова проверяет свойство версии.
+Если значение изменилось за это время, создается  исключение OptimisticLockException . В противном случае транзакция 
+фиксирует обновление и увеличивает значение свойства value.
+модель таблицы использует метку времени вместо числового столбца для управления версиями.
+оптимистическая блокировка основана на обнаружении изменений в сущностях путем проверки их атрибута версии . 
+Если происходит какое-либо одновременное обновление, возникает OptmisticLockException . 
+После этого мы можем повторить попытку обновления данных.
+Атрибуты версии - это свойства с аннотацией @Version . Они необходимы для включения оптимистической блокировки.
 
-it's crucial to manage concurrent access to a database properly. 
-We should be able to handle multiple transactions in an effective and most importantly, error-proof way.
-To achieve that we can use optimistic locking mechanism.
+Есть несколько правил, которым мы должны следовать при объявлении атрибутов версии:
++ каждый класс сущности должен иметь только один атрибут версии
++ он должен быть помещен в первичную таблицу для сущности, сопоставленной с несколькими таблицами
++ тип атрибута версии должен быть одним из следующих: int , Integer , long , Long , short , Short , java.sql.Timestamp
+#### Мы должны знать, что мы можем получить значение атрибута версии через сущность, но мы не должны обновлять или увеличивать его.
+Всякий раз, когда мы запрашиваем  режим блокировки OPTIMISTIC , поставщик сохраняемости защищает наши данные от грязного чтения, а также от неповторяющихся чтений .
 
-In order to use optimistic locking, *we need to have an entity including a property with @Version annotation.* 
-While using it, each transaction that reads data holds the value of the version property.
-Before the transaction wants to make an update, it checks the version property again.
-If the value has changed in the meantime an OptimisticLockException is thrown. 
-Otherwise, the transaction commits the update and increments a value version property.
+#### Вопрос:
+Моя модель таблицы использует метку времени вместо числового столбца для управления версиями. Как я могу использовать этот столбец для оптимистического механизма блокировки Hibernate?
 
-As we've said before, *optimistic locking is based on detecting changes on entities by checking their version attribute*. 
-If any concurrent update takes place, OptmisticLockException occurs. After that, we can retry updating the data.
-
-We can imagine that this mechanism is suitable for applications which do much more reads than updates or deletes. 
-What is more, it's useful in situations where entities must be detached for some time and locks cannot be held.
-
-*On the contrary, pessimistic locking mechanism involves locking entities on the database level.*
-
-Each transaction can acquire a lock on data. As long as it holds the lock, no transaction can read, 
-delete or make any updates on the locked data. We can presume that using pessimistic locking may result in deadlocks. 
-However, it ensures greater integrity of data than optimistic locking.
-
-Version attributes are properties with @Version annotation. *They are necessary for enabling optimistic locking.*
-
+Решение:
+Спецификация JPA поддерживает числовые столбцы и столбцы отметок времени для управления версиями.
+ Вы можете использовать столбец отметки времени так же, как столбец числовой версии. 
+ Вам просто нужен атрибут сущности java.util.Date и аннотируйте его с помощью @Version .
+```java
+@Entity
+public class Author {
+ 
+    @Version
+    private Date version;
+ 
+    ...
+}
+```
+Hibernate извлекает текущее время из локальной JVM и использует его для обновления столбца базы данных для каждой операции создания или обновления.
 [https://www.baeldung.com/jpa-optimistic-locking](https://www.baeldung.com/jpa-optimistic-locking) 
+[https://thorben-janssen.com/hibernate-tips-use-timestamp-versioning-optimistic-locking/](https://thorben-janssen.com/hibernate-tips-use-timestamp-versioning-optimistic-locking/)
 
 [к оглавлению](#Hibernate)
 
